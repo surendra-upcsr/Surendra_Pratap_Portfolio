@@ -1,0 +1,1374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dr. Surendra Pratap Singh — Plant Pathologist</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --forest:    #1a3a2a;
+    --moss:      #2d5a3d;
+    --fern:      #3d7a52;
+    --sage:      #6aad82;
+    --mist:      #b8d9c4;
+    --dew:       #e8f4ed;
+    --cream:     #f9f6f0;
+    --parchment: #f2ede4;
+    --sand:      #d4c9b0;
+    --ink:       #1e2820;
+    --bark:      #4a3728;
+    --gold:      #b8952a;
+    --gold-light:#e8c96a;
+    --text-main: #2c3e30;
+    --text-soft: #5a6e5e;
+    --text-mute: #8a9e8e;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Jost', sans-serif;
+    background: var(--cream);
+    color: var(--text-main);
+    overflow-x: hidden;
+  }
+
+  /* ───── NOISE TEXTURE ───── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 1000;
+    opacity: 0.5;
+  }
+
+  /* ───── NAV ───── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 18px 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(249,246,240,0.88);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(180,200,185,0.3);
+    transition: all 0.3s ease;
+  }
+  nav.scrolled {
+    padding: 12px 60px;
+    box-shadow: 0 2px 30px rgba(26,58,42,0.08);
+  }
+  .nav-brand {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--forest);
+    letter-spacing: 0.04em;
+  }
+  .nav-brand span { color: var(--fern); }
+  .nav-links { display: flex; gap: 36px; list-style: none; }
+  .nav-links a {
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-soft);
+    text-decoration: none;
+    transition: color 0.2s;
+    cursor: pointer;
+  }
+  .nav-links a:hover { color: var(--forest); }
+
+  /* ───── HERO ───── */
+  #hero {
+    min-height: 100vh;
+    background: linear-gradient(160deg, var(--forest) 0%, var(--moss) 50%, #2a4e38 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Botanical decorative rings */
+  #hero::before {
+    content: '';
+    position: absolute;
+    width: 700px; height: 700px;
+    border-radius: 50%;
+    border: 1px solid rgba(184,217,196,0.12);
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    animation: breathe 8s ease-in-out infinite;
+  }
+  #hero::after {
+    content: '';
+    position: absolute;
+    width: 500px; height: 500px;
+    border-radius: 50%;
+    border: 1px solid rgba(184,217,196,0.08);
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    animation: breathe 8s ease-in-out infinite 1s;
+  }
+  @keyframes breathe {
+    0%, 100% { transform: translate(-50%, -50%) scale(1); }
+    50% { transform: translate(-50%, -50%) scale(1.04); }
+  }
+
+  /* Leaf pattern bg */
+  .hero-bg-leaf {
+    position: absolute;
+    font-size: 280px;
+    opacity: 0.03;
+    color: var(--mist);
+    top: -60px; right: -40px;
+    user-select: none;
+    transform: rotate(15deg);
+  }
+  .hero-bg-leaf2 {
+    position: absolute;
+    font-size: 200px;
+    opacity: 0.025;
+    color: var(--mist);
+    bottom: -20px; left: -30px;
+    user-select: none;
+    transform: rotate(-20deg);
+  }
+
+  .hero-content {
+    text-align: center;
+    z-index: 2;
+    padding: 40px 20px;
+    animation: fadeUp 1s ease forwards;
+  }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero-badge {
+    display: inline-block;
+    background: rgba(184,217,196,0.15);
+    border: 1px solid rgba(184,217,196,0.3);
+    color: var(--mist);
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 6px 20px;
+    border-radius: 40px;
+    margin-bottom: 28px;
+  }
+
+  .hero-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3rem, 7vw, 5.5rem);
+    font-weight: 300;
+    color: var(--cream);
+    line-height: 1.08;
+    letter-spacing: -0.01em;
+    margin-bottom: 8px;
+  }
+  .hero-name em {
+    font-style: italic;
+    color: var(--mist);
+  }
+
+  .hero-title {
+    font-size: 0.85rem;
+    font-weight: 400;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--sage);
+    margin-bottom: 40px;
+  }
+
+  .hero-divider {
+    width: 60px;
+    height: 1px;
+    background: var(--gold);
+    margin: 0 auto 36px;
+  }
+
+  .hero-stats {
+    display: flex;
+    gap: 48px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .hero-stat {
+    text-align: center;
+    animation: fadeUp 1s ease forwards;
+  }
+  .hero-stat:nth-child(2) { animation-delay: 0.1s; opacity: 0; }
+  .hero-stat:nth-child(3) { animation-delay: 0.2s; opacity: 0; }
+  .hero-stat:nth-child(4) { animation-delay: 0.3s; opacity: 0; }
+  .hero-stat:nth-child(1) { animation-delay: 0.05s; opacity: 0; }
+
+  .stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.8rem;
+    font-weight: 600;
+    color: var(--gold-light);
+    line-height: 1;
+  }
+  .stat-label {
+    font-size: 0.67rem;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--mist);
+    margin-top: 4px;
+  }
+
+  .hero-scroll {
+    position: absolute;
+    bottom: 32px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: var(--sage);
+    font-size: 0.68rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    animation: fadeUp 1s 0.8s ease forwards;
+    opacity: 0;
+  }
+  .scroll-line {
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(to bottom, var(--sage), transparent);
+    animation: scrollPulse 2s ease-in-out infinite;
+  }
+  @keyframes scrollPulse {
+    0%, 100% { opacity: 0.4; transform: scaleY(1); }
+    50% { opacity: 1; transform: scaleY(1.2); }
+  }
+
+  /* ───── SECTIONS SHARED ───── */
+  section { padding: 100px 0; }
+
+  .container {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 0 40px;
+  }
+
+  .section-label {
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--fern);
+    margin-bottom: 10px;
+  }
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 300;
+    color: var(--forest);
+    line-height: 1.2;
+    margin-bottom: 16px;
+  }
+  .section-line {
+    width: 48px;
+    height: 2px;
+    background: var(--gold);
+    margin-bottom: 50px;
+  }
+
+  /* ───── PROFILE ───── */
+  #profile { background: var(--cream); }
+
+  .profile-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.6fr;
+    gap: 80px;
+    align-items: start;
+  }
+
+  .profile-card {
+    background: var(--parchment);
+    border: 1px solid var(--sand);
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 8px 40px rgba(26,58,42,0.08);
+  }
+  .profile-card-header {
+    background: var(--forest);
+    padding: 32px;
+    text-align: center;
+  }
+  .profile-avatar {
+    width: 90px; height: 90px;
+    background: var(--moss);
+    border-radius: 50%;
+    margin: 0 auto 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.2rem;
+    color: var(--mist);
+    font-weight: 600;
+    border: 2px solid rgba(184,217,196,0.3);
+  }
+  .profile-card-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.35rem;
+    color: var(--cream);
+    font-weight: 400;
+    margin-bottom: 4px;
+  }
+  .profile-card-role {
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--sage);
+  }
+  .profile-card-body { padding: 24px 28px; }
+  .info-item {
+    display: flex;
+    gap: 14px;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(180,200,185,0.25);
+    align-items: flex-start;
+  }
+  .info-item:last-child { border-bottom: none; }
+  .info-key {
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-mute);
+    min-width: 80px;
+    padding-top: 2px;
+  }
+  .info-val {
+    font-size: 0.82rem;
+    color: var(--text-main);
+    line-height: 1.5;
+  }
+  .info-val a {
+    color: var(--fern);
+    text-decoration: none;
+  }
+
+  .profile-text p {
+    font-size: 1.02rem;
+    line-height: 1.85;
+    color: var(--text-soft);
+    margin-bottom: 22px;
+    font-weight: 300;
+  }
+  .profile-text p strong {
+    color: var(--forest);
+    font-weight: 500;
+  }
+
+  .expertise-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 30px;
+  }
+  .tag {
+    background: var(--dew);
+    border: 1px solid var(--mist);
+    color: var(--moss);
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    padding: 6px 14px;
+    border-radius: 2px;
+    transition: all 0.2s;
+  }
+  .tag:hover {
+    background: var(--moss);
+    color: var(--cream);
+    border-color: var(--moss);
+  }
+
+  /* ───── EXPERIENCE ───── */
+  #experience { background: var(--parchment); }
+
+  .timeline {
+    position: relative;
+    padding-left: 40px;
+  }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 8px; top: 6px; bottom: 0;
+    width: 1px;
+    background: linear-gradient(to bottom, var(--fern), var(--mist), transparent);
+  }
+
+  .timeline-item {
+    position: relative;
+    margin-bottom: 48px;
+    opacity: 0;
+    transform: translateX(-10px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+  .timeline-item.visible {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  .timeline-dot {
+    position: absolute;
+    left: -36px; top: 6px;
+    width: 10px; height: 10px;
+    background: var(--fern);
+    border-radius: 50%;
+    border: 2px solid var(--cream);
+    box-shadow: 0 0 0 2px var(--fern);
+  }
+  .timeline-item:first-child .timeline-dot {
+    background: var(--gold);
+    box-shadow: 0 0 0 2px var(--gold);
+  }
+
+  .timeline-period {
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--fern);
+    margin-bottom: 6px;
+  }
+  .timeline-role {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--forest);
+    margin-bottom: 3px;
+  }
+  .timeline-org {
+    font-size: 0.82rem;
+    color: var(--text-soft);
+    margin-bottom: 10px;
+  }
+  .timeline-duration {
+    display: inline-block;
+    background: var(--dew);
+    color: var(--moss);
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    padding: 3px 10px;
+    border-radius: 2px;
+    text-transform: uppercase;
+  }
+
+  /* ───── EDUCATION ───── */
+  #education { background: var(--cream); }
+
+  .edu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+  }
+  .edu-card {
+    background: var(--parchment);
+    border: 1px solid var(--sand);
+    border-left: 3px solid var(--fern);
+    padding: 28px;
+    border-radius: 2px;
+    transition: transform 0.25s, box-shadow 0.25s;
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.5s ease, transform 0.5s ease, box-shadow 0.25s;
+  }
+  .edu-card.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .edu-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(26,58,42,0.1);
+  }
+  .edu-card.highlight { border-left-color: var(--gold); }
+  .edu-degree {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--forest);
+    margin-bottom: 4px;
+  }
+  .edu-field {
+    font-size: 0.78rem;
+    color: var(--fern);
+    font-weight: 500;
+    margin-bottom: 8px;
+  }
+  .edu-inst {
+    font-size: 0.82rem;
+    color: var(--text-soft);
+    margin-bottom: 8px;
+    line-height: 1.4;
+  }
+  .edu-year {
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-mute);
+  }
+  .edu-phd-note {
+    background: var(--dew);
+    border: 1px solid var(--mist);
+    border-radius: 2px;
+    padding: 16px 20px;
+    margin-top: 24px;
+    font-size: 0.82rem;
+    color: var(--moss);
+    line-height: 1.6;
+  }
+  .edu-phd-note strong { color: var(--forest); }
+
+  /* ───── RESEARCH ───── */
+  #research { background: var(--forest); color: var(--cream); }
+  #research .section-label { color: var(--sage); }
+  #research .section-title { color: var(--cream); }
+  #research .section-line { background: var(--gold); }
+
+  .research-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+    margin-bottom: 60px;
+  }
+  .research-card {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(184,217,196,0.15);
+    border-top: 2px solid var(--sage);
+    padding: 32px;
+    border-radius: 2px;
+    transition: background 0.3s;
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.5s ease, transform 0.5s ease, background 0.3s;
+  }
+  .research-card.visible { opacity: 1; transform: translateY(0); }
+  .research-card:hover { background: rgba(255,255,255,0.08); }
+  .research-card-icon { font-size: 1.8rem; margin-bottom: 16px; }
+  .research-card-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--mist);
+    margin-bottom: 12px;
+  }
+  .research-card ul {
+    list-style: none;
+    padding: 0;
+  }
+  .research-card ul li {
+    font-size: 0.79rem;
+    font-weight: 300;
+    color: rgba(255,255,255,0.65);
+    padding: 5px 0;
+    padding-left: 14px;
+    position: relative;
+    line-height: 1.5;
+  }
+  .research-card ul li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--sage);
+    font-size: 0.7rem;
+  }
+
+  .projects-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.6rem;
+    color: var(--mist);
+    font-weight: 400;
+    margin-bottom: 24px;
+  }
+  .project-item {
+    border-left: 1px solid rgba(106,173,130,0.3);
+    padding: 16px 24px;
+    margin-bottom: 16px;
+    transition: border-color 0.2s;
+  }
+  .project-item:hover { border-left-color: var(--sage); }
+  .project-name {
+    font-size: 0.88rem;
+    font-weight: 500;
+    color: var(--cream);
+    margin-bottom: 4px;
+  }
+  .project-desc {
+    font-size: 0.78rem;
+    font-weight: 300;
+    color: rgba(255,255,255,0.55);
+    line-height: 1.6;
+  }
+
+  /* ───── PUBLICATIONS ───── */
+  #publications { background: var(--parchment); }
+
+  .pub-stats-row {
+    display: flex;
+    gap: 0;
+    margin-bottom: 60px;
+    border: 1px solid var(--sand);
+    border-radius: 3px;
+    overflow: hidden;
+  }
+  .pub-stat-box {
+    flex: 1;
+    text-align: center;
+    padding: 36px 20px;
+    border-right: 1px solid var(--sand);
+    background: var(--cream);
+    transition: background 0.2s;
+  }
+  .pub-stat-box:last-child { border-right: none; }
+  .pub-stat-box:hover { background: var(--dew); }
+  .pub-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3rem;
+    font-weight: 600;
+    color: var(--forest);
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .pub-label {
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-mute);
+  }
+  .pub-naas {
+    background: var(--forest);
+  }
+  .pub-naas .pub-num { color: var(--gold-light); }
+  .pub-naas .pub-label { color: var(--sage); }
+
+  .pub-list-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem;
+    color: var(--forest);
+    font-weight: 600;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--sand);
+  }
+  .pub-item {
+    padding: 16px 0;
+    border-bottom: 1px solid rgba(180,200,185,0.2);
+    font-size: 0.82rem;
+    color: var(--text-soft);
+    line-height: 1.65;
+    transition: color 0.2s;
+    opacity: 0;
+    transform: translateX(-8px);
+    transition: opacity 0.4s ease, transform 0.4s ease, color 0.2s;
+  }
+  .pub-item.visible { opacity: 1; transform: translateX(0); }
+  .pub-item:hover { color: var(--text-main); }
+  .pub-item em {
+    color: var(--forest);
+    font-style: normal;
+    font-weight: 500;
+  }
+  .pub-naas-badge {
+    display: inline-block;
+    background: var(--dew);
+    color: var(--fern);
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    padding: 2px 8px;
+    border-radius: 2px;
+    margin-left: 6px;
+    vertical-align: middle;
+  }
+
+  .pub-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; }
+
+  /* ───── CONFERENCES ───── */
+  #conferences { background: var(--cream); }
+
+  .conf-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 16px;
+  }
+  .conf-item {
+    background: var(--parchment);
+    border: 1px solid var(--sand);
+    padding: 20px 24px;
+    border-radius: 2px;
+    transition: transform 0.2s, box-shadow 0.2s;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.4s ease, transform 0.4s ease, box-shadow 0.2s;
+  }
+  .conf-item.visible { opacity: 1; transform: translateY(0); }
+  .conf-item:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(26,58,42,0.08); }
+  .conf-year {
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    color: var(--fern);
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .conf-name {
+    font-size: 0.85rem;
+    font-weight: 400;
+    color: var(--text-main);
+    line-height: 1.55;
+  }
+  .conf-venue {
+    font-size: 0.73rem;
+    color: var(--text-mute);
+    margin-top: 5px;
+  }
+  .conf-badge {
+    display: inline-block;
+    background: var(--forest);
+    color: var(--mist);
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    padding: 2px 8px;
+    border-radius: 2px;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-top: 8px;
+  }
+
+  /* ───── MEMBERSHIPS ───── */
+  #memberships { background: var(--dew); }
+  .membership-items { display: flex; flex-wrap: wrap; gap: 20px; }
+  .membership-card {
+    background: var(--cream);
+    border: 1px solid var(--mist);
+    padding: 24px 30px;
+    border-radius: 2px;
+    flex: 1; min-width: 280px;
+  }
+  .membership-icon { font-size: 1.6rem; margin-bottom: 10px; }
+  .membership-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.15rem;
+    color: var(--forest);
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+  .membership-type {
+    font-size: 0.72rem;
+    color: var(--fern);
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  /* ───── CONTACT / FOOTER ───── */
+  #contact {
+    background: var(--ink);
+    color: var(--cream);
+    padding: 80px 0;
+    text-align: center;
+  }
+  #contact .section-label { color: var(--sage); }
+  #contact .section-title { color: var(--cream); }
+  #contact .section-line { margin: 0 auto 40px; }
+
+  .contact-info {
+    display: flex;
+    justify-content: center;
+    gap: 60px;
+    flex-wrap: wrap;
+    margin-top: 40px;
+  }
+  .contact-piece { text-align: center; }
+  .contact-piece-label {
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--sage);
+    margin-bottom: 6px;
+  }
+  .contact-piece-val {
+    font-size: 0.9rem;
+    color: rgba(255,255,255,0.8);
+    font-weight: 300;
+  }
+
+  .footer-bar {
+    background: rgba(0,0,0,0.3);
+    padding: 16px;
+    text-align: center;
+    font-size: 0.7rem;
+    color: rgba(255,255,255,0.3);
+    letter-spacing: 0.08em;
+  }
+
+  /* ───── SCROLL ANIMATIONS ───── */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+  /* ───── RESPONSIVE ───── */
+  @media (max-width: 768px) {
+    nav { padding: 14px 20px; }
+    .nav-links { display: none; }
+    .container { padding: 0 20px; }
+    section { padding: 70px 0; }
+    .profile-grid { grid-template-columns: 1fr; gap: 40px; }
+    .pub-grid { grid-template-columns: 1fr; gap: 30px; }
+    .hero-stats { gap: 28px; }
+    .pub-stats-row { flex-wrap: wrap; }
+    .pub-stat-box { min-width: 50%; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="mainNav">
+  <div class="nav-brand">Dr. <span>S.P. Singh</span></div>
+  <ul class="nav-links">
+    <li><a onclick="nav('profile')">Profile</a></li>
+    <li><a onclick="nav('experience')">Experience</a></li>
+    <li><a onclick="nav('education')">Education</a></li>
+    <li><a onclick="nav('research')">Research</a></li>
+    <li><a onclick="nav('publications')">Publications</a></li>
+    <li><a onclick="nav('conferences')">Conferences</a></li>
+    <li><a onclick="nav('contact')">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg-leaf">🌿</div>
+  <div class="hero-bg-leaf2">🍃</div>
+  <div class="hero-content">
+    <div class="hero-badge">Plant Pathology Specialist · Since 1993</div>
+    <h1 class="hero-name">Dr. Surendra<br><em>Pratap Singh</em></h1>
+    <p class="hero-title">Ph.D. · Scientific Officer · Sugarcane Research</p>
+    <div class="hero-divider"></div>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <div class="stat-num">28<span style="font-size:1.4rem">+</span></div>
+        <div class="stat-label">Years Service</div>
+      </div>
+      <div class="hero-stat">
+        <div class="stat-num">95</div>
+        <div class="stat-label">Publications</div>
+      </div>
+      <div class="hero-stat">
+        <div class="stat-num">13</div>
+        <div class="stat-label">Research Papers</div>
+      </div>
+      <div class="hero-stat">
+        <div class="stat-num">37<span style="font-size:1.4rem">.25</span></div>
+        <div class="stat-label">NAAS Rating</div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-scroll" onclick="nav('profile')" style="cursor:pointer;">
+    <div class="scroll-line"></div>
+    Scroll
+  </div>
+</section>
+
+<!-- PROFILE -->
+<section id="profile">
+  <div class="container">
+    <div class="section-label">About</div>
+    <h2 class="section-title">Professional Profile</h2>
+    <div class="section-line"></div>
+    <div class="profile-grid">
+      <div>
+        <div class="profile-card">
+          <div class="profile-card-header">
+            <div class="profile-avatar">SS</div>
+            <div class="profile-card-name">Dr. Surendra Pratap Singh</div>
+            <div class="profile-card-role">Scientific Officer · Plant Pathology</div>
+          </div>
+          <div class="profile-card-body">
+            <div class="info-item">
+              <div class="info-key">Born</div>
+              <div class="info-val">05 March 1966</div>
+            </div>
+            <div class="info-item">
+              <div class="info-key">Mobile</div>
+              <div class="info-val"><a href="tel:+919415698624">+91-9415698624</a></div>
+            </div>
+            <div class="info-item">
+              <div class="info-key">Address</div>
+              <div class="info-val">Vill. Bhaitauli, Distt. Varanasi, Uttar Pradesh</div>
+            </div>
+            <div class="info-item">
+              <div class="info-key">Research</div>
+              <div class="info-val">Division of Plant Pathology, UPCSR, Shahjahanpur-242001, U.P.</div>
+            </div>
+            <div class="info-item">
+              <div class="info-key">Nation</div>
+              <div class="info-val">Indian</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="profile-text">
+        <p>Dr. Surendra Pratap Singh is a distinguished <strong>Plant Pathologist and Scientific Officer</strong> with over 28 years of dedicated research in sugarcane disease science at premier government institutions across Uttar Pradesh.</p>
+        <p>Holding a <strong>Ph.D. in Plant Pathology</strong> from DDU Gorakhpur University, he has built an outstanding legacy of contributions to varietal resistance screening, molecular diagnostics, and fungicide efficacy — work that has directly shaped disease management strategies across India's sugarcane belt.</p>
+        <p>With <strong>95 publications</strong> spanning peer-reviewed journals, Springer book chapters, and popular extension literature — plus participation in national and international conferences — Dr. Singh is a recognized authority whose insights bridge laboratory science and field application.</p>
+        <div class="expertise-tags">
+          <span class="tag">Sugarcane Pathology</span>
+          <span class="tag">Red Rot Management</span>
+          <span class="tag">Molecular Diagnostics</span>
+          <span class="tag">Varietal Resistance</span>
+          <span class="tag">Virus Indexing</span>
+          <span class="tag">Fungicide Evaluation</span>
+          <span class="tag">Biofertilizers</span>
+          <span class="tag">Meristem Culture</span>
+          <span class="tag">AICRP Projects</span>
+          <span class="tag">Contract Research</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="container">
+    <div class="section-label">Career</div>
+    <h2 class="section-title">Work Experience</h2>
+    <div class="section-line"></div>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-period">June 2023 – March 2026</div>
+        <div class="timeline-role">Scientific Officer</div>
+        <div class="timeline-org">Uttar Pradesh Council of Sugarcane Research (UPCSR), Muzaffarnagar</div>
+        <div class="timeline-duration">2 Years 10 Months</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-period">September 2012 – June 2023</div>
+        <div class="timeline-role">Senior Scientific Assistant</div>
+        <div class="timeline-org">Uttar Pradesh Council of Sugarcane Research (UPCSR), Shahjahanpur</div>
+        <div class="timeline-duration">9 Years</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-period">November 1994 – September 2012</div>
+        <div class="timeline-role">Scientific Assistant</div>
+        <div class="timeline-org">Gorakhpur Sugar & Sugarcane Biology Research Institute (GSSBRI), Seorahi, Kushinagar</div>
+        <div class="timeline-duration">17 Years 10 Months</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-period">June 1993 – June 1994</div>
+        <div class="timeline-role">Research Associate</div>
+        <div class="timeline-org">Gorakhpur Sugar & Sugarcane Biology Research Institute (GSSBRI), Seorahi, Kushinagar</div>
+        <div class="timeline-duration">1 Year</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="container">
+    <div class="section-label">Academia</div>
+    <h2 class="section-title">Educational Qualifications</h2>
+    <div class="section-line"></div>
+    <div class="edu-grid">
+      <div class="edu-card highlight">
+        <div class="edu-degree">Ph.D.</div>
+        <div class="edu-field">Botany — Plant Pathology</div>
+        <div class="edu-inst">DDU Gorakhpur University, Gorakhpur</div>
+        <div class="edu-year">Awarded · 1994</div>
+      </div>
+      <div class="edu-card">
+        <div class="edu-degree">M.Sc.</div>
+        <div class="edu-field">Botany — Plant Pathology</div>
+        <div class="edu-inst">Awadh University, Faizabad</div>
+        <div class="edu-year">1989</div>
+      </div>
+      <div class="edu-card">
+        <div class="edu-degree">B.Sc.</div>
+        <div class="edu-field">Zoology, Botany & Environment</div>
+        <div class="edu-inst">Awadh University, Faizabad</div>
+        <div class="edu-year">1987</div>
+      </div>
+      <div class="edu-card">
+        <div class="edu-degree">Intermediate</div>
+        <div class="edu-field">Biology, Physics & Chemistry</div>
+        <div class="edu-inst">U.P. Board, Allahabad</div>
+        <div class="edu-year">1984</div>
+      </div>
+      <div class="edu-card">
+        <div class="edu-degree">High School</div>
+        <div class="edu-field">Science, Maths & Biology</div>
+        <div class="edu-inst">U.P. Board, Allahabad</div>
+        <div class="edu-year">1982</div>
+      </div>
+      <div class="edu-card">
+        <div class="edu-degree">Certificate</div>
+        <div class="edu-field">Computer Applications</div>
+        <div class="edu-inst">Karnataka Computer Shikshana Mission, Bangalore</div>
+        <div class="edu-year">2002</div>
+      </div>
+    </div>
+    <div class="edu-phd-note fade-in" style="margin-top:32px;">
+      <strong>Ph.D. Research:</strong> "Identification and Characterization of Sugarcane Mosaic Virus in Eastern Uttar Pradesh" &nbsp;·&nbsp; Additionally completed a two-month intensive training on <strong>Biological Control in Different Cropping Systems</strong> at Project Directorate of Biological Control, Bangalore (2002).
+    </div>
+  </div>
+</section>
+
+<!-- RESEARCH -->
+<section id="research">
+  <div class="container">
+    <div class="section-label">Expertise</div>
+    <h2 class="section-title">Research & Technical Skills</h2>
+    <div class="section-line"></div>
+
+    <div class="research-grid">
+      <div class="research-card">
+        <div class="research-card-icon">🔬</div>
+        <div class="research-card-title">Disease Diagnostics</div>
+        <ul>
+          <li>Survey & assessment across all sugar factories in Central UP</li>
+          <li>Isolation, identification & mass culturing of pathogens</li>
+          <li>Virus indexing — Mosaic, Yellow Leaf & Bacilliform viruses</li>
+          <li>Molecular characterization using RAPD primers</li>
+          <li>Phylogenetic analysis via Jaccard's similarity coefficient</li>
+        </ul>
+      </div>
+      <div class="research-card">
+        <div class="research-card-icon">🌾</div>
+        <div class="research-card-title">Disease Management</div>
+        <ul>
+          <li>Varietal resistance screening — Red Rot, Smut, Yellow Leaf</li>
+          <li>Fungicide efficacy evaluation (Thiophanate methyl, Propiconazole)</li>
+          <li>Sett Treatment Device (STD) studies for primary infection control</li>
+          <li>Meristem culture combined with molecular diagnostics</li>
+          <li>Mechanized fungicide delivery systems for field scale</li>
+        </ul>
+      </div>
+      <div class="research-card">
+        <div class="research-card-icon">🧬</div>
+        <div class="research-card-title">Genetics & Breeding</div>
+        <ul>
+          <li>Inheritance studies — 436 progenies from 43 bi-parental crosses</li>
+          <li>Identification of 20 good donor parents for red rot resistance</li>
+          <li>Evaluation of ISH/IGH genotypes under AICRP trials</li>
+          <li>Declaration of new pathotype CF13 from variety Co 0238</li>
+          <li>Breeder seed production via tissue culture (disease-free)</li>
+        </ul>
+      </div>
+      <div class="research-card">
+        <div class="research-card-icon">🌱</div>
+        <div class="research-card-title">Applied Agronomy</div>
+        <ul>
+          <li>Biofertilizer production & vermicompost technology</li>
+          <li>Biological control methods across cropping systems</li>
+          <li>Trichoderma efficacy on growth, yield & quality</li>
+          <li>Contract research with Syngenta (Amistar Top evaluation)</li>
+          <li>Extension articles in Hindi & English for farmer outreach</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="projects-title">Key AICRP Sugarcane Projects</div>
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:0 40px;">
+      <div class="project-item">
+        <div class="project-name">PP14 · Red Rot Pathotype Identification</div>
+        <div class="project-desc">Identified & maintained virulent isolates; led to declaration of new Indian sub-tropical pathotype CF13 originating from Co 0238 variety.</div>
+      </div>
+      <div class="project-item">
+        <div class="project-name">PP17 · Pre-zonal Variety Resistance</div>
+        <div class="project-desc">205 entries tested for red rot, smut and yellow leaf; 150 found resistant/moderately resistant.</div>
+      </div>
+      <div class="project-item">
+        <div class="project-name">PP23 · Elite Genotype Screening</div>
+        <div class="project-desc">55 ISH/IGH genotypes evaluated; 34 found R/MR against red rot.</div>
+      </div>
+      <div class="project-item">
+        <div class="project-name">PP31 · Pokkahboeng Epidemiology</div>
+        <div class="project-desc">Genotype evaluation with disease incidence correlated to climatic conditions; varietal susceptibility profiling.</div>
+      </div>
+      <div class="project-item">
+        <div class="project-name">PP33 · Yellow Leaf Disease</div>
+        <div class="project-desc">Meristem culture + molecular diagnostics combined; 2280 hardened seedlings produced and verified disease-free.</div>
+      </div>
+      <div class="project-item">
+        <div class="project-name">PP34 · Mechanized Fungicide Delivery</div>
+        <div class="project-desc">Sett treatment with soil drenching at 45th & 90th day proven most effective against red rot primary infection in field conditions.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PUBLICATIONS -->
+<section id="publications">
+  <div class="container">
+    <div class="section-label">Scholarly Work</div>
+    <h2 class="section-title">Publications</h2>
+    <div class="section-line"></div>
+
+    <div class="pub-stats-row">
+      <div class="pub-stat-box">
+        <div class="pub-num">95</div>
+        <div class="pub-label">Total Publications</div>
+      </div>
+      <div class="pub-stat-box">
+        <div class="pub-num">13</div>
+        <div class="pub-label">Research Papers</div>
+      </div>
+      <div class="pub-stat-box">
+        <div class="pub-num">31</div>
+        <div class="pub-label">Abstracts</div>
+      </div>
+      <div class="pub-stat-box">
+        <div class="pub-num">3</div>
+        <div class="pub-label">Book Chapters</div>
+      </div>
+      <div class="pub-stat-box">
+        <div class="pub-num">48</div>
+        <div class="pub-label">Popular Articles</div>
+      </div>
+      <div class="pub-stat-box pub-naas">
+        <div class="pub-num">37.25</div>
+        <div class="pub-label">NAAS Rating</div>
+      </div>
+    </div>
+
+    <div class="pub-grid">
+      <div>
+        <div class="pub-list-title">Select Research Papers</div>
+        <div class="pub-item">
+          <em>Rao, Singh & Singh (1991).</em> Two new alternative hosts of Curvularia palliseens — leaf spot causing fungus of sugarcane. <em>Tropical Pest Management</em>, UK. <span class="pub-naas-badge">NAAS 7.77</span>
+        </div>
+        <div class="pub-item">
+          <em>Singh, Rao et al. (1997).</em> Effect of sugarcane poty virus infection on metabolic activity, yield and juice quality. <em>Sugarcane Journal</em>.
+        </div>
+        <div class="pub-item">
+          <em>Tiwari, Singh et al. (2015).</em> Mix infection of pineapple and grassy shoot disease on commercial sugarcane varieties in Uttar Pradesh. <em>Phytopathogenic Mollicutes</em>, 5(2). <span class="pub-naas-badge">NAAS 5.41</span>
+        </div>
+        <div class="pub-item">
+          <em>Sujeet P. Singh, Vishwakarma, S.P. Singh et al. (2017).</em> Novel report of banded chlorosis in commercial sugarcane cultivars from sub-tropical India. <em>IJCMAS</em>, 6(4). <span class="pub-naas-badge">NAAS 5.38</span>
+        </div>
+        <div class="pub-item">
+          <em>Sujeet P. Singh, S.P. Singh et al. (2019).</em> Frequency of red rot resistance in the progeny population of various crosses. <em>Agricultural Science Digest</em>, 39(3). <span class="pub-naas-badge">NAAS 4.75</span>
+        </div>
+        <div class="pub-item">
+          <em>Sujeet P. Singh, S.P. Singh et al. (2021).</em> Disease status of sugarcane in Uttar Pradesh. <em>Intl. Journal of Tropical Agriculture</em>, 39(3). <span class="pub-naas-badge">NAAS 3.94</span>
+        </div>
+      </div>
+
+      <div>
+        <div class="pub-list-title">Book Chapters (Springer)</div>
+        <div class="pub-item">
+          <em>Rao, S.P. Singh & Upadhayay (1994).</em> Population dynamics of aphids in relation to sugarcane mosaic virus spread. In: <em>Current Trends in Sugarcane Pathology</em>. Int. Books & Periodicals, New Delhi.
+        </div>
+        <div class="pub-item">
+          <em>Tiwari, Kumari, S.P. Singh et al. (2016).</em> Fusarium Moniliforme associated with sugarcane leaf binding disease. In: <em>Current Trends in Plant Diagnostics</em>. Springer International Publishing, Switzerland.
+        </div>
+        <div class="pub-item">
+          <em>A.K. Tiwari, A. Singh, S.P. Singh et al. (2016).</em> Overview of major fungal diseases of sugarcane in India: detection and management strategies. In: <em>Diagnostics of Fungal Diseases</em>. Springer (pp. 275–304).
+        </div>
+
+        <div class="pub-list-title" style="margin-top:36px;">Training & Certifications</div>
+        <div class="pub-item">
+          <em>Biological Control Training (2002)</em> — Two months intensive program at Project Directorate of Biological Control, Bangalore. Focus on integrated pest and disease management across cropping systems.
+        </div>
+        <div class="pub-item">
+          <em>Computer Applications Certificate (2002)</em> — Karnataka Computer Shikshana Mission, Bangalore. Covered Windows 98, MS Office 2000 & Internet.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONFERENCES -->
+<section id="conferences">
+  <div class="container">
+    <div class="section-label">Presentations</div>
+    <h2 class="section-title">Conferences & Symposia</h2>
+    <div class="section-line"></div>
+    <div class="conf-list">
+      <div class="conf-item">
+        <div class="conf-year">2023</div>
+        <div class="conf-name">National Symposium on Plant Health for Sustainable Agriculture — IPSMEZCON 2023</div>
+        <div class="conf-venue">SVPUAT, Meerut</div>
+      </div>
+      <div class="conf-item">
+        <div class="conf-year">2022</div>
+        <div class="conf-name">SUGRCON-2022 — Sustainability of Sugar & Integrated Industries</div>
+        <div class="conf-venue">ICAR-IISR, Lucknow</div>
+        <div><span class="conf-badge">International</span></div>
+      </div>
+      <div class="conf-item">
+        <div class="conf-year">2020</div>
+        <div class="conf-name">National Symposium of Indian Phytopathological Society (IPS)</div>
+        <div class="conf-venue">Karnal, January 2020</div>
+      </div>
+      <div class="conf-item">
+        <div class="conf-year">2019</div>
+        <div class="conf-name">SUGRCON-2019 — International Conference on Sugarcane</div>
+        <div class="conf-venue">ICAR-IISR, Lucknow, Feb 2019</div>
+        <div><span class="conf-badge">International</span></div>
+      </div>
+      <div class="conf-item">
+        <div class="conf-year">2018</div>
+        <div class="conf-name">ISSCT XII Pathology Workshop — Sugarcane Disease Research</div>
+        <div class="conf-venue">Coimbatore, India, Sept 2018</div>
+        <div><span class="conf-badge">International</span></div>
+      </div>
+      <div class="conf-item">
+        <div class="conf-year">2016</div>
+        <div class="conf-name">6th International Conference: Plant Pathogens and People</div>
+        <div class="conf-venue">New Delhi, Feb 2016</div>
+        <div><span class="conf-badge">International</span></div>
+      </div>
+      <div class="conf-item">
+        <div class="conf-year">2016</div>
+        <div class="conf-name">Centennial Fiesta National Symposium-2016</div>
+        <div class="conf-venue">UPCSR, Shahjahanpur, December 2016</div>
+      </div>
+      <div class="conf-item">
+        <div class="conf-year">1998</div>
+        <div class="conf-name">National Symposium on Plant Diversity Pattern & Bio Resource Technology</div>
+        <div class="conf-venue">Sugarcane Research Station, Gorakhpur</div>
+      </div>
+      <div class="conf-item">
+        <div class="conf-year">1991</div>
+        <div class="conf-name">National Symposium on Current Trends in Taxonomy of Phytopathogenic Microorganisms</div>
+        <div class="conf-venue">Dept. of Botany, University of Gorakhpur</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MEMBERSHIPS -->
+<section id="memberships">
+  <div class="container">
+    <div class="section-label">Affiliations</div>
+    <h2 class="section-title">Professional Memberships</h2>
+    <div class="section-line"></div>
+    <div class="membership-items">
+      <div class="membership-card fade-in">
+        <div class="membership-icon">🌾</div>
+        <div class="membership-name">Bhartiya Krishi Anusandhan Samiti</div>
+        <div class="membership-type">Life Member · Karnal</div>
+      </div>
+      <div class="membership-card fade-in">
+        <div class="membership-icon">📖</div>
+        <div class="membership-name">SCITECH Journal</div>
+        <div class="membership-type">Editorial Board Member · Ayodhya, Faizabad</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <div class="section-label">Get in Touch</div>
+    <h2 class="section-title">Contact</h2>
+    <div class="section-line" style="margin:0 auto 20px;"></div>
+    <p style="font-size:0.88rem; color:rgba(255,255,255,0.5); font-weight:300; max-width:480px; margin:0 auto;">Available for scientific advisory roles, R&D collaborations, and private sector consultancy in plant pathology and sugarcane research.</p>
+    <div class="contact-info">
+      <div class="contact-piece">
+        <div class="contact-piece-label">Mobile</div>
+        <div class="contact-piece-val">+91-9415698624</div>
+      </div>
+      <div class="contact-piece">
+        <div class="contact-piece-label">Permanent Address</div>
+        <div class="contact-piece-val">Vill. Bhaitauli, Distt. Varanasi, U.P.</div>
+      </div>
+      <div class="contact-piece">
+        <div class="contact-piece-label">Research Address</div>
+        <div class="contact-piece-val">UPCSR, Shahjahanpur-242001, U.P.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="footer-bar">
+  © 2026 Dr. Surendra Pratap Singh · Plant Pathologist · Sugarcane Research Specialist
+</div>
+
+<script>
+  // Smooth scroll to section
+  function nav(id) {
+    const el = document.getElementById(id);
+    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  // Scroll-based nav
+  window.addEventListener('scroll', () => {
+    const nav = document.getElementById('mainNav');
+    if (window.scrollY > 50) nav.classList.add('scrolled');
+    else nav.classList.remove('scrolled');
+  });
+
+  // Intersection observer for reveal animations
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => {
+          entry.target.classList.add('visible');
+        }, entry.target.dataset.delay || 0);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  // Apply staggered delays to groups
+  document.querySelectorAll('.timeline-item').forEach((el, i) => {
+    el.dataset.delay = i * 120;
+    observer.observe(el);
+  });
+  document.querySelectorAll('.edu-card').forEach((el, i) => {
+    el.dataset.delay = i * 80;
+    observer.observe(el);
+  });
+  document.querySelectorAll('.research-card').forEach((el, i) => {
+    el.dataset.delay = i * 100;
+    observer.observe(el);
+  });
+  document.querySelectorAll('.pub-item').forEach((el, i) => {
+    el.dataset.delay = i * 60;
+    observer.observe(el);
+  });
+  document.querySelectorAll('.conf-item').forEach((el, i) => {
+    el.dataset.delay = i * 60;
+    observer.observe(el);
+  });
+  document.querySelectorAll('.fade-in').forEach((el, i) => {
+    el.dataset.delay = i * 80;
+    observer.observe(el);
+  });
+</script>
+</body>
+</html>
