@@ -832,9 +832,83 @@
   .fade-in.visible { opacity: 1; transform: translateY(0); }
 
   /* ───── RESPONSIVE ───── */
+  /* ───── HAMBURGER ───── */
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 36px; height: 36px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 4px;
+    z-index: 200;
+  }
+  .hamburger span {
+    display: block;
+    width: 22px; height: 2px;
+    background: var(--forest);
+    border-radius: 2px;
+    transition: all 0.3s ease;
+    transform-origin: center;
+  }
+  .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+  .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  .mobile-menu {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(26,58,42,0.97);
+    backdrop-filter: blur(12px);
+    z-index: 150;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    opacity: 0;
+    transform: translateY(-12px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    pointer-events: none;
+  }
+  .mobile-menu.open {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: all;
+  }
+  .mobile-menu-brand {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem;
+    color: var(--sage);
+    letter-spacing: 0.1em;
+    margin-bottom: 28px;
+    text-align: center;
+  }
+  .mobile-menu a {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.2rem;
+    font-weight: 300;
+    color: var(--mist);
+    text-decoration: none;
+    letter-spacing: 0.06em;
+    padding: 12px 0;
+    cursor: pointer;
+    transition: color 0.2s;
+    border-bottom: 1px solid rgba(184,217,196,0.1);
+    width: 240px;
+    text-align: center;
+    display: block;
+  }
+  .mobile-menu a:last-child { border-bottom: none; }
+  .mobile-menu a:hover, .mobile-menu a:active { color: var(--gold-light); }
+
   @media (max-width: 768px) {
     nav { padding: 14px 20px; }
     .nav-links { display: none; }
+    .hamburger { display: flex; }
+    .mobile-menu { display: flex; }
     .container { padding: 0 20px; }
     section { padding: 70px 0; }
     .profile-grid { grid-template-columns: 1fr; gap: 40px; }
@@ -859,7 +933,22 @@
     <li><a onclick="nav('conferences')">Conferences</a></li>
     <li><a onclick="nav('contact')">Contact</a></li>
   </ul>
+  <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+
+<!-- MOBILE MENU OVERLAY -->
+<div class="mobile-menu" id="mobileMenu">
+  <div class="mobile-menu-brand">Dr. S.P. Singh</div>
+  <a onclick="navMobile('profile')">Profile</a>
+  <a onclick="navMobile('experience')">Experience</a>
+  <a onclick="navMobile('education')">Education</a>
+  <a onclick="navMobile('research')">Research</a>
+  <a onclick="navMobile('publications')">Publications</a>
+  <a onclick="navMobile('conferences')">Conferences</a>
+  <a onclick="navMobile('contact')">Contact</a>
+</div>
 
 <!-- HERO -->
 <section id="hero">
@@ -1324,6 +1413,37 @@
     const el = document.getElementById(id);
     if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
+
+  // Hamburger toggle
+  function toggleMenu() {
+    const btn = document.getElementById('hamburger');
+    const menu = document.getElementById('mobileMenu');
+    btn.classList.toggle('open');
+    menu.classList.toggle('open');
+    document.body.style.overflow = menu.classList.contains('open') ? 'hidden' : '';
+  }
+
+  // Mobile nav: close menu then scroll
+  function navMobile(id) {
+    const btn = document.getElementById('hamburger');
+    const menu = document.getElementById('mobileMenu');
+    btn.classList.remove('open');
+    menu.classList.remove('open');
+    document.body.style.overflow = '';
+    setTimeout(() => {
+      const el = document.getElementById(id);
+      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 300);
+  }
+
+  // Close menu on outside click
+  document.getElementById('mobileMenu').addEventListener('click', function(e) {
+    if (e.target === this) {
+      document.getElementById('hamburger').classList.remove('open');
+      this.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+  });
 
   // Scroll-based nav
   window.addEventListener('scroll', () => {
